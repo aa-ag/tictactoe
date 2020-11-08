@@ -64,7 +64,51 @@ def square_available(row, col):
     return board[row][col] == 0
 
 def full_board():
+    '''
+    Checks if game is over: no empty spaces left
+    '''
     return 0 in board
+
+def check_win(player):
+    '''
+    Checks if either player has won, either by
+    drawing a vertical line, a horizonal line or 
+    a diagonal line, asc or descending
+    '''
+    for col in range(BOARD_COLS):
+        if board[0][col] == player and board[1][col] == player and board[2][col] == player:
+            draw_vertical_win(col, player)
+            return True
+
+    for row in range(BOARD_ROWS):
+        if board[row][0] == player and board[row][1] == player  and board[row][2] == player:
+            draw_horizontal_win(row, player)
+            return True
+
+    if board[2][0] == player and board[1][1] == player and board[0][2] == player:
+        draw_asc_diagonal_win(player)
+        return True
+
+    if board[0][0] == player and board[1][1] == player and board[2][2] == player:
+        draw_desc_diagonal_win(player)
+        return True 
+        
+    return False
+
+def draw_vertical_win(col, player):
+    pass
+
+def draw_horizontal_win(row, player):
+    pass
+
+def draw_asc_diagonal_win(player):
+    pass
+
+def draw_desc_diagonal_win(player):
+    pass
+
+def restart():
+    pass
 
 player = 1
 
