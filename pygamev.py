@@ -18,8 +18,10 @@ CIRCLE_COLOR = (239, 231, 200)
 X_COLOR = (66, 66, 66)
 SPACE = 55
 
+# Screen
+
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption('Tic Tac Toe')
+pygame.display.set_caption('Tic Tac Toe -- press "r" to restart')
 screen.fill(BACKGROUND)
 
 # Board
@@ -34,10 +36,12 @@ def draw_lines():
     pygame.draw.line(screen, LINES, (0, 200), (600, 200), LINE_WIDTH)
     # 2nd horizontal line
     pygame.draw.line(screen, LINES, (0, 400), (600, 400), LINE_WIDTH)
+    
     # 1st vertical line
     pygame.draw.line(screen, LINES, (200, 0), (200, 600), LINE_WIDTH)
     # 2nd vertical line
     pygame.draw.line(screen, LINES, (400, 0), (400, 600), LINE_WIDTH)
+
 
 def draw_figures():
     '''
@@ -50,11 +54,13 @@ def draw_figures():
                 pygame.draw.line(screen, X_COLOR, (col * 200 + SPACE, row * 200 + 200 - SPACE), (col * 200 + 200 - SPACE, row * 200 + SPACE), X_WIDTH)
                 pygame.draw.line(screen, X_COLOR, (col * 200 + SPACE, row * 200 + SPACE), (col * 200 + 200 - SPACE, row * 200 + 200 - SPACE), X_WIDTH)
 
+
 def square_move(row, col, player):
     '''
     Assigns position to player "move"
     '''
     board[row][col] = player
+
 
 def square_available(row, col):
     '''
@@ -62,11 +68,13 @@ def square_available(row, col):
     '''
     return board[row][col] == 0
 
+
 def full_board():
     '''
     Checks if game is over: no empty spaces left
     '''
     return 0 in board
+
 
 def check_win(player):
     '''
@@ -98,6 +106,7 @@ def check_win(player):
 
     return False
 
+
 def draw_vertical_win(col, player):
     '''
     Draws vertical line to show vertical win
@@ -110,6 +119,7 @@ def draw_vertical_win(col, player):
         color = X_COLOR
 
     pygame.draw.line(screen, color, (pos_x, 15), (pos_x, HEIGHT - 15), 15)
+
 
 def draw_horizontal_win(row, player):
     '''
@@ -124,6 +134,7 @@ def draw_horizontal_win(row, player):
 
     pygame.draw.line(screen, color, (15, pos_y), (WIDTH - 15, pos_y), 15)
 
+
 def draw_asc_diagonal_win(player):
     '''
     Draws diagonal ascending, left-to-tight line to show win
@@ -134,6 +145,7 @@ def draw_asc_diagonal_win(player):
         color = X_COLOR
 
     pygame.draw.line(screen, color, (15, HEIGHT - 15), (WIDTH - 15, 15), 15)
+
 
 def draw_desc_diagonal_win(player):
     '''
@@ -146,13 +158,24 @@ def draw_desc_diagonal_win(player):
     
     pygame.draw.line(screen, color, (15, 15), (WIDTH - 15, HEIGHT - 15), 15)
 
-def restart():
-    pass
 
-player = 1
-game_over = False
+def restart():
+    '''
+    Allows users to restart after one player has won, or they reached "game over" by
+    redrawing the board, its lines, resetting player to "1" and all values in board to zero
+    '''
+    screen.fill(BACKGROUND)
+    draw_lines()
+    for row in range(BOARD_ROWS):
+        for col in range(BOARD_COLS):
+            board[row][col] = 0
+    
 
 draw_lines()
+
+# Variables
+player = 1
+game_over = False
 
 # main loop
 while True:
@@ -161,7 +184,8 @@ while True:
     '''
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            sys.exit
+            sys.exit()
+
         if event.type == pygame.MOUSEBUTTONDOWN and not game_over:
             mouse_y = event.pos[1]
             mouse_x = event.pos[0]
@@ -175,12 +199,20 @@ while True:
                     if check_win(player):
                         game_over = True
                     player = 2
+                    
                 elif player == 2:
                     square_move(clicked_row, clicked_col, 2)
                     if check_win(player):
                         game_over = True
                     player = 1
-                draw_figures()
+                
+            draw_figures()
+
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_r:
+                restart()
+                player = 1
+                game_over = False
 
     pygame.display.update()
 
