@@ -1,4 +1,5 @@
 import pygame, sys
+import numpy as np
 
 pygame.init()
 
@@ -6,6 +7,8 @@ pygame.init()
 WIDTH = 600
 HEIGHT = 600
 LINE_WIDTH = 15
+BOARD_ROWS = 3
+BOARD_COLS = 3
 BACKGROUND = (28, 170, 156)
 LINES = (23, 145, 135)
 
@@ -13,8 +16,11 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Tic Tac Toe')
 screen.fill(BACKGROUND)
 
-# Functions
+# Board
+board = np.zeros((BOARD_ROWS, BOARD_COLS))
+print(board)
 
+# Functions
 def draw_lines():
     # 1st horizontal line
     pygame.draw.line(screen, LINES, (0, 200), (600, 200), LINE_WIDTH)
