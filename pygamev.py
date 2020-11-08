@@ -49,6 +49,8 @@ def square_available(row, col):
 def full_board():
     return 0 in board
 
+
+
 # TESTING
 square_move(0, 0, 1)
 square_move(0, 1, 1)
@@ -63,7 +65,7 @@ print(board)
 # print(square_available(0,0))
 # square_move(0,0,1)
 # print(square_available(0,0))
-print(full_board())
+# print(full_board())
 
 draw_lines()
 
@@ -72,7 +74,15 @@ while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            mouse_y = event.pos[1]
+            mouse_x = event.pos[0]
+            
+            clicked_row = int(mouse_y // 200)
+            clicked_col = int(mouse_x // 200)
 
+            print(clicked_row, clicked_col)
+            
     pygame.display.update()
 
 # TO DO: playing chips, playing functions || conda env: ttt
