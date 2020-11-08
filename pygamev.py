@@ -4,6 +4,7 @@ import numpy as np
 pygame.init()
 
 # Constants
+## measures
 WIDTH = 600
 HEIGHT = 600
 LINE_WIDTH = 15
@@ -12,10 +13,11 @@ BOARD_COLS = 3
 CIRCLE_RADIUS = 60
 CIRCLE_WIDTH = 15
 X_WIDTH = 25
-BACKGROUND = (28, 170, 156)
-LINES = (23, 145, 135)
-CIRCLE_COLOR = (239, 231, 200)
-X_COLOR = (66, 66, 66)
+## colors
+BACKGROUND = (255, 255, 255)
+LINES = (0, 0, 0)
+CIRCLE_COLOR = (100, 100, 100)
+X_COLOR = (50, 50, 50)
 SPACE = 55
 
 # Screen
@@ -217,7 +219,7 @@ while True:
     pygame.display.update()
 
 # TESTING
-# print(board)
+# print(board) # empty board
 # square_move(0, 0, 1)
 # square_move(0, 1, 1)
 # square_move(0, 2, 1)
@@ -227,7 +229,7 @@ while True:
 # square_move(2, 0, 1)
 # square_move(2, 1, 1)
 # square_move(2, 2, 1)
-# print(board)
+# print(board) # completely full
 # print(square_available(0,0))
 # square_move(0,0,1)
 # print(square_available(0,0))
