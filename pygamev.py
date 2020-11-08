@@ -18,10 +18,13 @@ screen.fill(BACKGROUND)
 
 # Board
 board = np.zeros((BOARD_ROWS, BOARD_COLS))
-print(board)
+# print(board)
 
 # Functions
 def draw_lines():
+    '''
+    Draws lines in pygame screen
+    '''
     # 1st horizontal line
     pygame.draw.line(screen, LINES, (0, 200), (600, 200), LINE_WIDTH)
     # 2nd horizontal line
@@ -30,6 +33,37 @@ def draw_lines():
     pygame.draw.line(screen, LINES, (200, 0), (200, 600), LINE_WIDTH)
     # 2nd vertical line
     pygame.draw.line(screen, LINES, (400, 0), (400, 600), LINE_WIDTH)
+
+def square_move(row, col, player):
+    '''
+    Assigns position to player "move"
+    '''
+    board[row][col] = player
+
+def square_available(row, col):
+    '''
+    Checks if board is full
+    '''
+    return board[row][col] == 0
+
+def full_board():
+    return 0 in board
+
+# TESTING
+square_move(0, 0, 1)
+square_move(0, 1, 1)
+square_move(0, 2, 1)
+square_move(1, 0, 1)
+square_move(1, 1, 1)
+square_move(1, 2, 1)
+square_move(2, 0, 1)
+square_move(2, 1, 1)
+square_move(2, 2, 1)
+print(board)
+# print(square_available(0,0))
+# square_move(0,0,1)
+# print(square_available(0,0))
+print(full_board())
 
 draw_lines()
 
