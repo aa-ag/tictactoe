@@ -1,3 +1,24 @@
+### Requirenments
+"""
+* Create a board and other global variables: 
+    - board
+    - game_still_going
+    - winner
+    - current_player
+* Display the board
+* Full board: gameover
+* Check for a win:
+    - Vertical win
+    - Horizontal win
+    - Diagonal win ascending
+    - Diagonal win descending
+* Play game:
+    - Start
+    - Turns
+    - Quit
+    - ReStart
+"""
+
 # --------- GLOBAL VARIABLES -----------
 
 board = ["-", "-", "-",
