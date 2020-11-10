@@ -217,21 +217,3 @@ while True:
                 game_over = False
 
     pygame.display.update()
-
-# TESTING
-# print(board) # empty board
-# square_move(0, 0, 1)
-# square_move(0, 1, 1)
-# square_move(0, 2, 1)
-# square_move(1, 0, 1)
-# square_move(1, 1, 1)
-# square_move(1, 2, 1)
-# square_move(2, 0, 1)
-# square_move(2, 1, 1)
-# square_move(2, 2, 1)
-# print(board) # completely full
-# print(square_available(0,0))
-# square_move(0,0,1)
-# print(square_available(0,0))
-# print(full_board())
-# NOTES: conda env: ttt
